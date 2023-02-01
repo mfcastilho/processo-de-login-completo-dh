@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "fullName": "Mario Frederico",
+      "email": "mario@mail.com",
+      "password": "123456",
+      "country": "Brasil",
+      "avatar": "1675017494400_img_mario_frederico.jpeg"
+    }
+  ]
+}

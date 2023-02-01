@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+
+  <style>
+
+    .div-child{
+      display: flex;
+      justify-content: center;
+      
+    }
+
+    .div-child form{
+      width: 50%;
+      margin: 80px;
+      border: 1px solid  #CCC;
+    }
+
+    .container h2{
+      margin: 20px 5%;
+    }
+
+    .container label{
+      display: block;
+      margin: 10px 5% 0 5%;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .container input{
+      width: 90%;
+      height: 40px;
+      margin: 0 5%;
+      padding-left: 10px;
+      font-size: 18px;
+      background-color: #F2F1F2;
+      border: none;
+    }
+    .container input[type=file]{
+      background-color: transparent;
+      margin-left: 3.5%;
+    }
+
+    .checkbox-class{
+      display: flex;
+      margin: 0;
+    }
+
+    .container input[type=checkbox]{
+      width: 5%;
+      height: 20px;
+      display: inline;
+      margin: 10px 3px 0 5%;
+    }
+
+    .container .label-checkbox{
+      margin: 10px 0;
+    }
+    
+
+    hr{
+      margin-bottom: 20px;
+      color: #F2F1F2;
+      width: 90%;
+    }
+
+    .clearfix{
+      margin: 0 5%;
+    }
+
+    .clearfix button{
+      background-color: #3BB07E;
+      color: #FFF;
+      width: 40%;
+      padding: 15px;
+      margin-bottom: 30px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .danger{
+      margin: 0 5%;
+      color: red;
+      margin-bottom: 20px;
+      
+    }
+
+  </style>
+</head>
+<body>
+  <%- include("components/navbar.ejs") %> 
+  <div>
+    <div class="div-child">
+      <form method="POST" action="/user/login" enctype="multipart/form-data">
+
+        <div class="container">
+          <h2>Formulário de login</h2>
+          <hr>
+
+        
+          <label for="email">Email</label>
+          <input type="text" name="email" id="email" value="<%= locals.old ? old.email : "" %>">
+
+          <% if(locals.errors && errors.email){ %>
+            <div class="danger">
+              <%= errors.email.msg %> 
+            </div>
+          <% } %> 
+
+          <label for="password">Senha</label>
+          <input type="password" name="password" id="password">
+
+          <% if(locals.errors && errors.password){ %>
+            <div class="danger">
+              <%= errors.password.msg %> 
+            </div>
+          <% } %> 
+
+          <div class="checkbox-class">
+            <input type="checkbox" name="remember-user" id="remember-user">
+            <label class="label-checkbox" for="remember-user">Lembrar meu usuário</label>
+          </div>
+          
+
+          <div class="clearfix">
+            <button type="submit" class="signupbtn" style="font-size: 26px;"><b>Register</b></button>
+          </div>
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+  
+</body>
+</html>

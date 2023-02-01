@@ -1,0 +1,31 @@
+{
+  "name": "aula-validacao-completa-com-express-validator-dh",
+  "version": "1.0.0",
+  "description": "exercise of fixing the concepts for the application of the express-validator",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/app.js",
+    "dev": "nodemon ./src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mfcastilho/aula-validacao-completa-com-express-validator-dh.git"
+  },
+  "author": "Mario Frederico de Castilho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mfcastilho/aula-validacao-completa-com-express-validator-dh/issues"
+  },
+  "homepage": "https://github.com/mfcastilho/aula-validacao-completa-com-express-validator-dh#readme",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "express-validator": "^6.14.3",
+    "multer": "^1.4.5-lts.1",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
