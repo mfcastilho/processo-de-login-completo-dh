@@ -7,6 +7,22 @@
       "password": "123456",
       "country": "Brasil",
       "avatar": "1675017494400_img_mario_frederico.jpeg"
+    },
+    {
+      "id": 2,
+      "fullName": "Pedro Silva",
+      "email": "pedro@mail.com",
+      "password": "123456",
+      "country": "Argentina",
+      "avatar": "profile-default.svg"
+    },
+    {
+      "id": 3,
+      "fullName": "Maria Buzzoo",
+      "email": "buzzo@mail.com",
+      "password": "123456",
+      "country": "Chile",
+      "avatar": "profile-default.svg"
     }
   ]
 }
