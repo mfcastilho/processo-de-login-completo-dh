@@ -1,4 +1,4 @@
-
+const UserModel = require("../models/UsersModel");
 
 const loggedUserDataMiddleware = (req, res, next)=>{
 
@@ -11,6 +11,15 @@ const loggedUserDataMiddleware = (req, res, next)=>{
   //chamada isLogged e passando o valor false
   res.locals.isLogged = false;
 
+
+
+  let emailInCookie = req.cookies.userEmail;
+
+  let userFromCookie = UserModel.findUserByFields("email", emailInCookie);
+
+  if(userFromCookie){
+    req.session.userLogged = userFromCookie;
+  }
 
   //Se o usuário estiver logado, iremos passar para a propriedade
   //isLogged da variável locals o valor true

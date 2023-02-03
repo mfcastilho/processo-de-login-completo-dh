@@ -3,14 +3,21 @@ const { validationResult } = require("express-validator");
 const bcryt = require("bcrypt");
 
 
+let users = UsersModel.findAll();
+
+
 const UsersController = {
   showProfilePage:(req, res)=>{
+
+    //chamando o cookie de nome userEmail que foi criado
+    //dentro do método processLogin
+    console.log(req.cookies.userEmail)
 
     res.render("userProfile.ejs", {userLogged: req.session.userLogged});
   },
   showRegisterPage:(req, res)=>{
 
-    res.cookie("teste", "olá gente", {maxAge:10000});
+    // res.cookie("teste", "olá gente", {maxAge:10000});
     return res.render("userRegisterForm.ejs");
 
   },
@@ -51,27 +58,55 @@ const UsersController = {
     return res.redirect("/user/login");
   },
   showLoginPage:(req, res)=>{
-    console.log(req.cookies.teste);
+    // console.log(req.cookies.teste);
     return res.render("userLoginForm.ejs");
   },
   processLogin:(req, res)=>{
 
+    
+    
 
-    const userToLogin = UsersModel.findUserByFields("email", req.body.email);
+  let userToLogin = UsersModel.findUserByFields("email", req.body.email);
     // console.log(userToLogin);
     console.log(req.session);
+    console.log(userToLogin);
+
+   
+    console.log(users);
+
+    // const password = userToLogin.password;
+
+    // if(!res.locals.isLogged){
+      
+  
+    //   const user = users.find(user=>user.id == userToLogin.id);
+
+    //   userToLogin.password = user.password;
+
+    //   console.log(user);
+    // }
     
 
     if(userToLogin){
 
       let checkPassword = bcryt.compareSync(req.body.password, userToLogin.password);
+      
       if(checkPassword){
 
         delete userToLogin.password;
         //inserindo uma nova propriedade a session chamada de userLogged,
         //que recebe as informações do usuário 
         req.session.userLogged = userToLogin;
-        console.log(req.session);
+        
+
+        //Se o checkbox da vista userLoginForm.ejs foi selecionado,
+        //quer dizer que iremos criar um novo cookie, passando as 
+        //seguintes informações:o nome do cookie:"userEmail"
+        //o valor: req.body.email
+        //e a duração: 30 minutos
+        if(req.body.remember_user){
+          res.cookie("userEmail", req.body.email, {maxAge: (1000 * 60) * 30});
+        }
 
         return res.redirect("/user/profile");
       }
@@ -93,18 +128,10 @@ const UsersController = {
       }
     });
 
-    // const resultValidations = validationResult(req);
-
-    // if(resultValidations.errors.length > 0){
-    //   return res.render("userLoginForm.ejs", {errors:resultValidations.mapped(), old:req.body})
-    // }
-
-
-
     return res.send("Usuário Registrado com sucesso!");
   },
   logout:(req, res)=>{
-    
+    res.clearCookie("userEmail");
     req.session.destroy();
 
     return res.redirect("/");
