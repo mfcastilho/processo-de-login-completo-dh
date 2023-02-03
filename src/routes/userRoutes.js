@@ -7,7 +7,7 @@ const multer = require("multer");
 //=== CONTROLLERS ===
 const UsersController = require("../controllers/UsersController");
 const loggedUserMiddleware = require("../middlewares/loggedUserMiddleware");
-
+const notLoggedUserMiddleware = require("../middlewares/notLoggedUserMiddleware");
 
 //=== MIDDLEWARES ===
 const uploadFile = require("../middlewares/multerMiddlewares");
@@ -32,11 +32,11 @@ router.post("/user/login", validations, UsersController.processLogin);
 
 
 //Perfil do usuário
-router.get("/user/profile", UsersController.showProfilePage);
+router.get("/user/profile", notLoggedUserMiddleware, UsersController.showProfilePage);
 
 
 //Logout
-router.get("/user/logout/", UsersController.logout);
+router.get("/user/logout/", notLoggedUserMiddleware, UsersController.logout);
 
 
 module.exports = router;
