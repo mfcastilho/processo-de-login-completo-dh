@@ -4,6 +4,7 @@ const express = require("express");
 const path = require("path");
 const userRoutes = require("./routes/userRoutes");
 const homeRoutes = require("./routes/homeRoutes");
+const session = require("express-session");
 
 
 //=== VARIÁVEIS ===
@@ -18,6 +19,13 @@ app.set("views", path.resolve("src", "views"));
 
 
 //=== MIDDLEWARES ===
+app.use(session({
+  secret:"senhamuitosecreta",
+  resave:false,
+  saveUninitialized:false
+}));
+
+
 app.use(express.json());
 app.use(express.static(path.resolve("src", "public")));
 

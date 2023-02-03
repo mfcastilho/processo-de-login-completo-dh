@@ -12,11 +12,11 @@
   <div style="margin-top: 40px; text-align: center;">
     <div>
       <div>
-        <h2>Hi user</h2>
-        <img src="/images/profile-default.svg" alt="" style="width: 200px;">
+        <h2><%= userLogged.name  %> </h2>
+        <img src="/images/<%= userLogged.avatar %>" alt="" style="width: 200px;">
         <br>
         <br>
-        <div>email</div>
+        <div><%= userLogged.email%> </div>
       </div>
     </div>
   </div>

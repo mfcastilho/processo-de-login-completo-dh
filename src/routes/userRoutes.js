@@ -36,7 +36,7 @@ router.get("/user/profile", UsersController.showProfilePage);
 
 
 //Logout
-router.get("/logout/", UsersController.logout);
+router.get("/user/logout/", UsersController.logout);
 
 
 module.exports = router;

@@ -6,7 +6,7 @@ const bcryt = require("bcrypt");
 const UsersController = {
   showProfilePage:(req, res)=>{
 
-    res.render("userProfile.ejs");
+    res.render("userProfile.ejs", {userLogged: req.session.userLogged});
   },
   showRegisterPage:(req, res)=>{
 
@@ -57,12 +57,21 @@ const UsersController = {
 
 
     const userToLogin = UsersModel.findUserByFields("email", req.body.email);
-    console.log(userToLogin);
+    // console.log(userToLogin);
+    console.log(req.session);
+    
 
     if(userToLogin){
 
       let checkPassword = bcryt.compareSync(req.body.password, userToLogin.password);
       if(checkPassword){
+
+        delete userToLogin.password;
+        //inserindo uma nova propriedade a session chamada de userLogged,
+        //que recebe as informações do usuário 
+        req.session.userLogged = userToLogin;
+        console.log(req.session);
+
         return res.redirect("/user/profile");
       }
 
@@ -95,6 +104,9 @@ const UsersController = {
   },
   logout:(req, res)=>{
     
+    req.session.destroy();
+
+    return res.redirect("/");
   }
 }
 
