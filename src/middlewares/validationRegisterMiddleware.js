@@ -24,7 +24,7 @@ const validations = [
 
   check("avatar").custom((value, {req})=>{
     let file = req.file;
-    let acceptedExtentions = [".jpg", ".png", ".gif"];
+    let acceptedExtentions = [".jpg", ".png", ".gif", ".jpeg"];
 
     if(!file){
       throw new Error("Precisa escolher um arquivo");

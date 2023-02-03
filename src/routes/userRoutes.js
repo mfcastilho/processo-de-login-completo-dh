@@ -32,7 +32,7 @@ router.post("/user/login", validations, UsersController.processLogin);
 
 
 //Perfil do usuário
-router.get("/profile/", UsersController.showProfilePage);
+router.get("/user/profile", UsersController.showProfilePage);
 
 
 //Logout
