@@ -6,7 +6,7 @@ const multer = require("multer");
 
 //=== CONTROLLERS ===
 const UsersController = require("../controllers/UsersController");
-
+const loggedUserMiddleware = require("../middlewares/loggedUserMiddleware");
 
 
 //=== MIDDLEWARES ===
@@ -17,14 +17,14 @@ const validations = require("../middlewares/validationRegisterMiddleware");
 
 
 //=== Formulário de registro ===
-router.get("/user/register",UsersController.showRegisterPage);
+router.get("/user/register", loggedUserMiddleware,UsersController.showRegisterPage);
 
 //Processar o registro
 router.post("/user/register", uploadFile.single("avatar"), validations, UsersController.processRegister);
 
 
 //=== Formulário de login ===
-router.get("/user/login", UsersController.showLoginPage);
+router.get("/user/login", loggedUserMiddleware, UsersController.showLoginPage);
 
 
 //Processar o login
