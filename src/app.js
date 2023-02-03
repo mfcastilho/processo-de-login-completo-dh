@@ -5,6 +5,9 @@ const path = require("path");
 const userRoutes = require("./routes/userRoutes");
 const homeRoutes = require("./routes/homeRoutes");
 const session = require("express-session");
+const cookies = require("cookie-parser");
+
+
 const loggedUserDataMiddleware = require("./middlewares/loggedUserDataMiddleware");
 
 //=== VARIÁVEIS ===
@@ -24,6 +27,8 @@ app.use(session({
   resave:false,
   saveUninitialized:false
 }));
+
+app.use(cookies());
 
 app.use(loggedUserDataMiddleware)
 

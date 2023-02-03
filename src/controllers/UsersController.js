@@ -10,6 +10,7 @@ const UsersController = {
   },
   showRegisterPage:(req, res)=>{
 
+    res.cookie("teste", "olá gente", {maxAge:10000});
     return res.render("userRegisterForm.ejs");
 
   },
@@ -50,7 +51,7 @@ const UsersController = {
     return res.redirect("/user/login");
   },
   showLoginPage:(req, res)=>{
-
+    console.log(req.cookies.teste);
     return res.render("userLoginForm.ejs");
   },
   processLogin:(req, res)=>{
