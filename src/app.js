@@ -5,7 +5,7 @@ const path = require("path");
 const userRoutes = require("./routes/userRoutes");
 const homeRoutes = require("./routes/homeRoutes");
 const session = require("express-session");
-
+const loggedUserDataMiddleware = require("./middlewares/loggedUserDataMiddleware");
 
 //=== VARIÁVEIS ===
 const app = express();
@@ -25,6 +25,7 @@ app.use(session({
   saveUninitialized:false
 }));
 
+app.use(loggedUserDataMiddleware)
 
 app.use(express.json());
 app.use(express.static(path.resolve("src", "public")));

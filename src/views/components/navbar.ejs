@@ -12,10 +12,13 @@
     <div style="margin-right: 100px;">
       <ul style="display: flex; gap: 30px;">
         
-        <li style="list-style: none;"><a href="/user/register" style="text-decoration: none;color: gainsboro;">Cadastrar usuário</a></li>
-        <li style="list-style: none;"><a href="/user/login" style="text-decoration: none;color: gainsboro;">Login</a></li>
-        <li style="list-style: none;"><a href="/user/profile" style="text-decoration: none; color: gainsboro;">Perfil</a></li>
-        <li style="list-style: none;"><a href="/user/logout" style="text-decoration: none;color: gainsboro;">Sair</a></li>
+        <% if(locals.isLogged){ %>
+          <li style="list-style: none;"><a href="/user/profile" style="text-decoration: none; color: gainsboro;">Perfil</a></li>
+          <li style="list-style: none;"><a href="/user/logout" style="text-decoration: none;color: gainsboro;">Sair</a></li>
+        <% } else{ %>
+            <li style="list-style: none;"><a href="/user/register" style="text-decoration: none;color: gainsboro;">Cadastrar usuário</a></li>
+            <li style="list-style: none;"><a href="/user/login" style="text-decoration: none;color: gainsboro;">Login</a></li>
+        <% } %> 
           
         
       </ul>
