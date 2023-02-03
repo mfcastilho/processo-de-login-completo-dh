@@ -2,27 +2,38 @@
   "users": [
     {
       "id": 1,
-      "fullName": "Mario Frederico",
+      "name": "Mario Frederico",
       "email": "mario@mail.com",
       "password": "123456",
-      "country": "Brasil",
       "avatar": "1675017494400_img_mario_frederico.jpeg"
     },
     {
       "id": 2,
-      "fullName": "Pedro Silva",
+      "name": "Pedro Silva",
       "email": "pedro@mail.com",
       "password": "123456",
-      "country": "Argentina",
       "avatar": "profile-default.svg"
     },
     {
       "id": 3,
-      "fullName": "Maria Buzzoo",
+      "name": "Maria Buzzo",
       "email": "buzzo@mail.com",
       "password": "123456",
-      "country": "Chile",
       "avatar": "profile-default.svg"
+    },
+    {
+      "id": "31ba36db-d727-402b-9361-0d8a8ba8125b",
+      "name": "Joaquim Castilho",
+      "email": "joaquim@mail.com",
+      "password": "$2b$10$3Vp98PR2jQJjVQTYT5sN2uNYMRUm6pcMr/AR3W5w1I.rSIldcLiWy",
+      "avatar": "1675375891180_img_user_avatar_male.jpg"
+    },
+    {
+      "id": "322c65aa-8353-45a3-afd6-71fa24157a41",
+      "name": "Mario Frederico",
+      "email": "mario@mail.com",
+      "password": "$2b$10$32WOCh2xe9bTEa2cKAx40uo0r3UCiMbZAqNzr/0Byt/7SWyKg8m1e",
+      "avatar": "1675376618534_img_user_avatar_male.jpg"
     }
   ]
 }

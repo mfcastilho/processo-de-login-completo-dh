@@ -1,8 +1,9 @@
 const path = require("path");
 const fs = require("fs");
 const database = require("../database/database.json");
-const { mainModule } = require("process");
-const pathDatabase = path.resolve("src", "database", "databse.json");
+const pathDatabase = path.resolve("src", "database", "database.json");
+
+const {v4:makeId} = require("uuid");
 
 
 const UsersModel = {
@@ -44,18 +45,21 @@ const UsersModel = {
     return 1;
 
   },
-  create:(userData)=>{const users = database.users;
-    const newUser = {
-      id:this.generateId(),
+  create:(userData)=>{
+
+    
+    let newUser = {
+      id: makeId(),
       ...userData
     }
 
     database.users.push(newUser);
     const dbJSON = JSON.stringify(database);
     fs.writeFileSync(pathDatabase, dbJSON);
+
+    return newUser;
   }
 }
 
-console.log(UsersModel.findUserByFields("email", "mario@mail.com"));
 
-
+module.exports = UsersModel;

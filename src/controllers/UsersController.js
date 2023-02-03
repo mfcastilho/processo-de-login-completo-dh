@@ -1,5 +1,6 @@
 const UsersModel = require("../models/UsersModel");
 const { validationResult } = require("express-validator");
+const bcryt = require("bcrypt");
 
 
 const UsersController = {
@@ -15,11 +16,34 @@ const UsersController = {
   processRegister:(req, res)=>{
     const resultValidations = validationResult(req);
 
+
     if(resultValidations.errors.length > 0){
       return res.render("userRegisterForm.ejs", {errors:resultValidations.mapped(), old:req.body})
     }
 
-    return res.send("Informações enviadas com sucesso!");
+    let userExists = UsersModel.findUserByFields("email", req.body.email);
+    if(userExists){
+      res.render("userRegisterForm.ejs", {
+        errors:{
+          email:{
+            msg:"Este email já está cadastrado,"
+          }         
+        },
+        old:req.body
+      });
+    }
+
+    let image = req.file.filename;
+
+    let userToCreate = {
+      ...req.body,
+      password: bcryt.hashSync(req.body.password, 10),
+      avatar:image
+    }
+
+    let userCreated = UsersModel.create(userToCreate);
+
+    return res.send("Ok, o usuário foi salvo!");
   },
   showLoginPage:(req, res)=>{
 
@@ -39,4 +63,4 @@ const UsersController = {
   }
 }
 
-module.exports = UsersController;
+module.exports = UsersController; 
